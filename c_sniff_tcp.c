@@ -71,8 +71,7 @@ void PrintData(const u_char* packet, struct ipheader *ip, struct tcpheader *tcp)
 	putchar('\n');
 }
 
-void got_packet(u_char *args, const struct pcap_pkthdr *header,
-							  const u_char *packet)
+void got_packet(u_char *args, const struct pcap_pkthdr *header, const u_char *packet)
 {
 	struct ethheader *eth = (struct ethheader *)packet;
 	Ether(eth);
@@ -81,12 +80,10 @@ void got_packet(u_char *args, const struct pcap_pkthdr *header,
 		struct ipheader *ip = (struct ipheader*)(packet+sizeof(struct ethheader));
 		IPHeader(ip);
 		if(ip->iph_protocol == IPPROTO_TCP){
-			struct tcpheader *tcp = (struct tcpheader*)
-									(packet+sizeof(struct ethheader)+ip->iph_ihl*4);
+			struct tcpheader *tcp = (struct tcpheader*)(packet+sizeof(struct ethheader)+ip->iph_ihl*4);
 			TCPHeader(tcp);
 			PrintData(packet, ip, tcp);	
 		}
-
 	}
 }
 
