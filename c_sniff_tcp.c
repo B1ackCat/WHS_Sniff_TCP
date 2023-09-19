@@ -46,7 +46,7 @@ void PrintData(const u_char* packet, struct ipheader *ip, struct tcpheader *tcp)
 		data = (u_char*)(packet + sizeof(struct ethheader) + ip_header_len + tcp_header_len);
 		printf("=========================== Data ==============================\n");
 		for(int i=0; i < len + ((len % COLUMN_NUM) ? (COLUMN_NUM - len % COLUMN_NUM) : 0); i++){	
-			if((i % COLUMN_NUM) == 0) printf("0x%06X: ",i);
+			if((i % COLUMN_NUM) == 0) printf("%04X: ",i);
 			if(data[i]){
 				printf("%02X ", data[i]);
 			}
