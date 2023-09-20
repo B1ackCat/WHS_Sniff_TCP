@@ -68,7 +68,7 @@ void PrintData(const u_char* packet, struct ipheader *ip, struct tcpheader *tcp)
 			}
 		}
 	}
-	putchar('\n');
+	printf("---------------------------------------------------------------\n");
 }
 
 void got_packet(u_char *args, const struct pcap_pkthdr *header, const u_char *packet)
